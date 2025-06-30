@@ -1,0 +1,40 @@
+﻿
+
+
+@model MVCBookingFinal_YARAB_.Models.Hotel
+
+<a asp-action="details" asp-controller="hotel" asp-route-id="@Model.id" class="text-decoration-none text-dark">
+    <div class="card h-100" style="border-radius:15px; overflow: hidden">
+
+       @*  ~/ProductsImages/@Model.Images.FirstOrDefault() *@
+        <img src="~/ProductsImages/pyramids.jpg" class="card-img-top" alt="@Model.Name" style="height: 250px;object-fit: cover; ">
+        <div class="card-body">
+            <h5 class="card-title fw-bold">@Model.Name</h5>
+            <p class="card-text" style="font:3px">@Model.starRating</p>
+            <p class="card-text" style="font:3px">@Model.Reviewed.Count() reviews</p>
+            <p class="card-text" style="font:3px">
+                @if (Model.Rooms.Any())
+                {
+                    var newPrice = Model.Rooms.Min(r => r.PricePerNight);
+                    var oldPrice = newPrice + 90; 
+
+                <p class="card-text">
+                    <span >starting from</span>
+                    <span style="color: red; text-decoration: line-through;">$@oldPrice</span>
+                    <span class="fw-bold ms-2" style="color: green;">$@newPrice</span>
+                </p>
+                }
+                else
+                {
+                <p class="card-text">N/A</p>
+                }
+
+            </p>
+            
+        </div>
+    </div>
+</a>
+
+
+
+
